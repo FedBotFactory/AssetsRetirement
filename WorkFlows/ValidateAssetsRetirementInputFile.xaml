@@ -4,7 +4,7 @@
     <x:Property Name="io_dtMainData" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="in_strOutputFilePath" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>854,2644</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1150,2963.3333333333335</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -92,7 +92,7 @@
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Validate input file for invalid data" sap:VirtualizedContainerService.HintSize="570.6666666666666,2579.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_52">
+  <Sequence DisplayName="Validate input file for invalid data" sap:VirtualizedContainerService.HintSize="570.6666666666666,2898.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_52">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtBotStatusEmpty" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_ColumnNames" />
@@ -105,7 +105,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Init - ValidateInputFile" sap:VirtualizedContainerService.HintSize="508.6666666666667,96" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[in_Config(&quot;Log_ValidateInputFile&quot;).ToString]" />
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_ColumnNames]" DisplayName="Read Columns" sap:VirtualizedContainerService.HintSize="508.6666666666667,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Columns" WorkbookPath="Data\Config.xlsx" />
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_ColumnNames]" DisplayName="Read Columns Sheet" sap:VirtualizedContainerService.HintSize="508.6666666666667,88" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="Columns" WorkbookPath="Data\Config.xlsx" />
     <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_ColumnNames]" DisplayName="For each column name in Columns datatable" sap:VirtualizedContainerService.HintSize="508.6666666666667,1051.3333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_14">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
@@ -146,67 +146,55 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="508.6666666666667,164.66666666666666" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,84.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_49">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtMainData]" DisplayName="For Each Row in input Datatable - Check Receipt Date" sap:VirtualizedContainerService.HintSize="499.3333333333333,480.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_15">
-            <ui:ForEachRow.Body>
-              <ActivityAction x:TypeArguments="sd:DataRow">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
-                </ActivityAction.Argument>
-                <If Condition="[Not IsDate (Row(in_Config(&quot;ColName_ReceiptDate&quot;).ToString))]" DisplayName="If - &quot;Receipt Date&quot; with valid Date Format" sap:VirtualizedContainerService.HintSize="465.3333333333333,364" sap2010:WorkflowViewState.IdRef="If_23">
-                  <If.Then>
-                    <ui:MultipleAssign DisplayName="Bot Status-ReceiptDate_InvalidDateFormat" sap:VirtualizedContainerService.HintSize="431.3333333333333,162" sap2010:WorkflowViewState.IdRef="MultipleAssign_11">
-                      <ui:MultipleAssign.AssignOperations>
-                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotStatus").ToString)]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:Object">[in_Config("BotStatus_BRE").ToString]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotComments").ToString)]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:Object">[in_Config("BotStatus_Date_InvalidDateFormat").ToString]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotTimeStamp").ToString)]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:Object">[Now.ToString]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                        </scg:List>
-                      </ui:MultipleAssign.AssignOperations>
-                    </ui:MultipleAssign>
-                  </If.Then>
-                </If>
-              </ActivityAction>
-            </ui:ForEachRow.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:ForEachRow>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dtMainData]" DisplayName="For Each Row in input Datatable - Check Retire Date" sap:VirtualizedContainerService.HintSize="508.6666666666667,484" sap2010:WorkflowViewState.IdRef="ForEachRow_16">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
+          </ActivityAction.Argument>
+          <If Condition="[Not IsDate (Row(in_Config(&quot;ColName_RetireDate&quot;).ToString))]" DisplayName="If - &quot;Retire Date&quot; with valid Date Format" sap:VirtualizedContainerService.HintSize="465.3333333333333,364" sap2010:WorkflowViewState.IdRef="If_23">
+            <If.Then>
+              <ui:MultipleAssign DisplayName="Bot Status-ReceiptDate_InvalidDateFormat" sap:VirtualizedContainerService.HintSize="431.3333333333333,162" sap2010:WorkflowViewState.IdRef="MultipleAssign_11">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotStatus").ToString)]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Object">[in_Config("BotStatus_BRE").ToString]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotComments").ToString)]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Object">[in_Config("BotStatus_Date_InvalidDateFormat").ToString]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:Object">[Row(in_Config("ColName_BotTimeStamp").ToString)]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:Object">[Now.ToString]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+            </If.Then>
+          </If>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachRow>
     <ui:FilterDataTable DataTable="[io_dtMainData]" DisplayName="Filter data with 'Empty' Bot Status" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="508.6666666666667,164" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[dtBotStatusEmpty]" SelectColumnsMode="Keep">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
